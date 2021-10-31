@@ -1,0 +1,236 @@
+`<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  </title>
+
+  <style type="text/css">
+    body{
+      background-color: #EFE8DE;
+    }
+    .formBox {
+      position: fixed;
+      background-color: #6eb53c;
+      width : 32%;
+      margin-top: 3%;
+      margin-left: 34%;
+      height: 550px;
+      border-radius: 3px;
+      box-shadow: 0 0 0 1px rgb(0 0 0 / 5%), 0 1px 1px rgb(0 0 0 / 5%);
+      -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.05);   
+    }
+    .head-bar{
+      position: relative;
+      height: 50px;
+      background-color: #294515;
+
+    }
+    .head-bar .heading { 
+      text-align: center;
+      color: white;
+      position: relative;
+      top: 6.5px;
+      font-size: 32px;
+      font-family: poppins;
+    }
+    .formBox .details{
+      position: relative;
+      height: 450px;
+      display: block;
+      width: inherit;
+    }
+    .formBox .details .labels{
+      left: 5%;
+      position: absolute;
+      height: inherit;
+      width: 50%;
+    }
+    .formBox .details .inputs{
+
+      position: absolute;
+      height: inherit;
+      left: 55%;
+      width: 40%;
+     
+    }
+    .formBox .details .labels .one-label{
+      position: relative;
+      font-size: 20px;
+      height: 37.5px;
+    }
+    .formBox .details .labels .one-label .label-txt{
+      position: relative;
+      top : 8.75px;
+    }
+    .formBox .details .inputs .one-input{
+      position: relative;
+      font-size: 20px;
+      height: 37.5px;
+    }
+    select,#name-box,#income-box,#co-income-box,#loan-box,#loan-term-box,.gender-radio,.married-radio,.self-employment-radio,
+    .credit-history-radio{
+      position : relative;
+       top : 8.75px;
+    }
+    .gender-radio,.married-radio,.self-employment-radio,
+    .credit-history-radio{
+      font-size:18px;
+    }
+    input[type="text"],input[type="number"]{
+      position: relative;
+      width: 95%;
+    }
+    select{
+      position: relative;
+      height: 21px;
+      width: 100%;
+    }
+
+    .tail-bar{
+      position: relative;
+      height: 50px;
+      align-items: center;
+    }
+    .submit-btn{
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      height: 70%;
+      width: 100px;
+    }
+    input[type="submit"]{
+      height: 100%;
+      width: 100%;
+      background-color: #294515;
+      border: 1px solid white;
+      border-radius: 3px;
+      color : white;
+      font-family: verdana;
+      font-size: 12px;
+    }
+    input[type="submit"]:hover{
+      color: yellow;
+      border: 2px solid yellow;
+      border-radius: 3px;
+      font-size: 14px;
+      font-family: verdana;
+    }
+  </style>
+</head>
+<body>
+    <div class="main">
+      <div class="formBox" >
+        <form name="loanForm" method='POST' action="{{ url_for('predict')}}">
+          <div class="head-bar">
+              <div class="heading">Loan Eligibility Test</div>
+          </div>
+          <div class="details">
+
+            <div class="labels">
+              <div class="one-label" > <span class="label-txt">Applicant Name </span></div>
+              <div class="one-label" > <span class="label-txt">Gender</span>  </div>
+              <div class="one-label"> <span  class="label-txt">Marital Status</span>  </div>
+              <div class="one-label"> <span  class="label-txt">No of Dependents</span> </div>
+              <div class="one-label"> <span  class="label-txt">Education</span></div>
+              <div class="one-label"> <span  class="label-txt"> Self Employment</span> </div>
+              <div class="one-label"> <span  class="label-txt">Applicant Income</span></div>
+              <div class="one-label"> <span  class="label-txt"> CoapplicantIncome</span></div>
+              <div class="one-label"> <span  class="label-txt">Loan Amount</span></div>
+              <div class="one-label"> <span  class="label-txt">Loan Amount Term</span></div>
+              <div class="one-label"> <span  class="label-txt">Credit History</span></div>
+              <div class="one-label"> <span  class="label-txt">Property Area</span></div>
+            </div>
+            <div class="inputs">
+              <div class="one-input"><input type="text" name="name-box" id="name-box"/></div>
+              <div class="one-input">
+                <span class="gender-radio"> 
+                  <input name="gender" type="radio" value="Male" />
+                  <span "gender-radio-name">Male</span>
+                  <input name="gender" type="radio" value="Female" />
+                  <span "gender-radio-name">Female</span>
+                </span>
+              </div>
+              <div class="one-input">
+                <span class="married-radio"> 
+                  <input name="married" type="radio" value="No" />
+                  <span "married-radio-name">Single</span>
+                  <input name="married" type="radio" value="Yes" />
+                  <span "married-radio-name">Married</span>
+                </span>
+              </div>
+              <div class="one-input">
+                <select name="dependents" id="dependents-select">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3+">3+</option>
+                </select>
+              </div>
+              <div class="one-input">
+                <select name="education" id="education-select">
+                  <option value="Graduate">Graduate</option>
+                  <option value="Not Graduate">Not Graduate</option>
+                </select>
+              </div>
+              <div class="one-input">
+                <span class="self-employment-radio"> 
+                  <input name="self_employment" type="radio" value="Yes" />
+                  <span "self-employment-radio-name">Yes</span>
+                  <input name="self_employment" type="radio" value="No" />
+                  <span "self-employment-radio-name">No</span>
+                </span>
+              </div>
+              <div class="one-input">
+                 <input type="number" name="income-box" id="income-box"/>
+              </div>
+              <div class="one-input">
+                 <input type="number" name="co-income-box" id="co-income-box"/>
+              </div>
+              <div class="one-input">
+                 <input type="number" name="loan-box" id="loan-box"/>
+              </div>
+              <div class="one-input">
+                <select name="loan_amount_terms" id="loan-term-select">
+                  <option value="60">5 Years</option>
+                  <option value="120">10 Years</option>
+                  <option value="180">15 Years</option>
+                  <option value="240">20 Years</option>
+                  <option value="300">25 Years</option>
+                  <option value="360">30 Years</option>
+                  <option value="480">40 Years</option>
+                </select>
+              </div>
+              <div class="one-input">
+                <span class="credit-history-radio"> 
+                  <input name="credit_history" type="radio" value="1" />
+                  <span "credit-history-radio-name">Good</span>
+                  <input name="credit_history" type="radio" value="0" />
+                  <span "credit-history-radio-name">Bad</span>
+                </span>
+              </div>
+              <div class="one-input">
+                <select name="property_area" id="area-select">
+                  <option value="Rural">Rural</option>
+                  <option value="Semiurban">Semiurban</option>
+                  <option value="Urban">Urban</option>
+                  
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="tail-bar" >
+              <div class="submit-btn" > <input type="submit"  value="CHECK" /></div>
+          </div>
+        </form>
+
+      </div>
+      {{ prediction_text }}
+    </div>
+    
+</body>
+</html>
